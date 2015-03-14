@@ -1,0 +1,161 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="/home/andre/workspaceluna/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/WebServicesMonitoring/WEB-INF/attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="AmazonS3Storage" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="getFile" qname="ns1:getFile" returnQName="ns1:getFileReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://storage.services.ufrn.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:accessKey" type="xsd:string"/>
+   <ns2:parameter qname="ns1:secretKey" type="xsd:string"/>
+   <ns2:parameter qname="ns1:bucketName" type="xsd:string"/>
+   <ns2:parameter qname="ns1:fileName" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:parameter name="allowedMethods" value="getFile"/>
+  <ns1:parameter name="wsdlPortType" value="AmazonS3Storage"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://storage.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServicePort" value="AmazonS3Storage"/>
+  <ns1:parameter name="className" value="br.ufrn.services.storage.AmazonS3Storage"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://storage.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServiceElement" value="AmazonS3StorageService"/>
+ </ns1:service>
+ <ns1:service name="DropboxStorage" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getFile" qname="ns2:getFile" returnQName="ns2:getFileReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://storage.services.ufrn.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:accessToken" type="xsd:string"/>
+   <ns1:parameter qname="ns2:file" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="DropboxStorage"/>
+  <ns1:parameter name="schemaQualified" value="http://storage.services.ufrn.br"/>
+  <ns1:parameter name="className" value="br.ufrn.services.storage.DropboxStorage"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="getFile"/>
+  <ns1:parameter name="wsdlPortType" value="DropboxStorage"/>
+  <ns1:parameter name="wsdlServiceElement" value="DropboxStorageService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://storage.services.ufrn.br"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+ </ns1:service>
+ <ns1:service name="AmazonRDSService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="connectDatabaseAmazon" qname="ns3:connectDatabaseAmazon" returnQName="ns3:connectDatabaseAmazonReturn" returnType="xsd:double" soapAction="" xmlns:ns3="http://databases.server.services.ufrn.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:host" type="xsd:string"/>
+   <ns1:parameter qname="ns3:user" type="xsd:string"/>
+   <ns1:parameter qname="ns3:pwd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="connectDatabaseAmazon"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="AmazonRDSService"/>
+  <ns1:parameter name="className" value="br.ufrn.services.server.databases.AmazonRDSService"/>
+  <ns1:parameter name="wsdlServicePort" value="AmazonRDSService"/>
+  <ns1:parameter name="schemaQualified" value="http://databases.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://databases.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServiceElement" value="AmazonRDSServiceService"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="GoogleCloudDatabaseService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="connectDatabaseGoogleCloud" qname="ns4:connectDatabaseGoogleCloud" returnQName="ns4:connectDatabaseGoogleCloudReturn" returnType="xsd:double" soapAction="" xmlns:ns4="http://databases.server.services.ufrn.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:host" type="xsd:string"/>
+   <ns1:parameter qname="ns4:user" type="xsd:string"/>
+   <ns1:parameter qname="ns4:pwd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="connectDatabaseGoogleCloud"/>
+  <ns1:parameter name="wsdlPortType" value="GoogleCloudDatabaseService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://databases.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServicePort" value="GoogleCloudDatabaseService"/>
+  <ns1:parameter name="className" value="br.ufrn.services.server.databases.GoogleCloudDatabaseService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://databases.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServiceElement" value="GoogleCloudDatabaseServiceService"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="RackspaceStorage" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getFile" qname="ns5:getFile" returnQName="ns5:getFileReturn" returnType="xsd:boolean" soapAction="" xmlns:ns5="http://storage.services.ufrn.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:user" type="xsd:string"/>
+   <ns1:parameter qname="ns5:apiKey" type="xsd:string"/>
+   <ns1:parameter qname="ns5:region" type="xsd:string"/>
+   <ns1:parameter qname="ns5:container" type="xsd:string"/>
+   <ns1:parameter qname="ns5:file" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getFile"/>
+  <ns1:parameter name="wsdlPortType" value="RackspaceStorage"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://storage.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServicePort" value="RackspaceStorage"/>
+  <ns1:parameter name="className" value="br.ufrn.services.storage.RackspaceStorage"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://storage.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServiceElement" value="RackspaceStorageService"/>
+ </ns1:service>
+ <ns1:service name="RackspaceDatabaseService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="connectDatabaseRackspace" qname="ns6:connectDatabaseRackspace" returnQName="ns6:connectDatabaseRackspaceReturn" returnType="xsd:double" soapAction="" xmlns:ns6="http://databases.server.services.ufrn.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:host" type="xsd:string"/>
+   <ns1:parameter qname="ns6:user" type="xsd:string"/>
+   <ns1:parameter qname="ns6:pwd" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="connectDatabaseRackspace"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="RackspaceDatabaseService"/>
+  <ns1:parameter name="className" value="br.ufrn.services.server.databases.RackspaceDatabaseService"/>
+  <ns1:parameter name="wsdlServicePort" value="RackspaceDatabaseService"/>
+  <ns1:parameter name="schemaQualified" value="http://databases.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://databases.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServiceElement" value="RackspaceDatabaseServiceService"/>
+ </ns1:service>
+ <ns1:service name="AmazonDynamoDBService" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="getItem" qname="ns7:getItem" returnQName="ns7:getItemReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://log.server.services.ufrn.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:accessKey" type="xsd:string"/>
+   <ns1:parameter qname="ns7:secretKey" type="xsd:string"/>
+   <ns1:parameter qname="ns7:keyItem" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="getItem"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="AmazonDynamoDBService"/>
+  <ns1:parameter name="className" value="br.ufrn.services.server.log.AmazonDynamoDBService"/>
+  <ns1:parameter name="wsdlServicePort" value="AmazonDynamoDBService"/>
+  <ns1:parameter name="schemaQualified" value="http://log.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://log.server.services.ufrn.br"/>
+  <ns1:parameter name="wsdlServiceElement" value="AmazonDynamoDBServiceService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

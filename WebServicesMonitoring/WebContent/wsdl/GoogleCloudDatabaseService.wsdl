@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://databases.server.services.ufrn.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://databases.server.services.ufrn.br" xmlns:intf="http://databases.server.services.ufrn.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://databases.server.services.ufrn.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="connectDatabaseGoogleCloud">
+    <complexType>
+     <sequence>
+      <element name="host" type="xsd:string"/>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="connectDatabaseGoogleCloudResponse">
+    <complexType>
+     <sequence>
+      <element name="connectDatabaseGoogleCloudReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="connectDatabaseGoogleCloudResponse">
+
+      <wsdl:part element="impl:connectDatabaseGoogleCloudResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="connectDatabaseGoogleCloudRequest">
+
+      <wsdl:part element="impl:connectDatabaseGoogleCloud" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="GoogleCloudDatabaseService">
+
+      <wsdl:operation name="connectDatabaseGoogleCloud">
+
+         <wsdl:input message="impl:connectDatabaseGoogleCloudRequest" name="connectDatabaseGoogleCloudRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:connectDatabaseGoogleCloudResponse" name="connectDatabaseGoogleCloudResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GoogleCloudDatabaseServiceSoapBinding" type="impl:GoogleCloudDatabaseService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="connectDatabaseGoogleCloud">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="connectDatabaseGoogleCloudRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="connectDatabaseGoogleCloudResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GoogleCloudDatabaseServiceService">
+
+      <wsdl:port binding="impl:GoogleCloudDatabaseServiceSoapBinding" name="GoogleCloudDatabaseService">
+
+         <wsdlsoap:address location="http://localhost:8080/WebServicesMonitoring/services/GoogleCloudDatabaseService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

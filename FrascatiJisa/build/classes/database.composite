@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+ <composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+           name="database">
+ 
+   
+ <service name="databaseService" promote="server/IDAOProduct"/>
+   
+   
+ <component name="server">
+ <implementation.java class="br.ufrn.frascati.dao.DAOProductLocal"/>
+ <service name="IDAOProduct">
+ 	<interface.java interface="br.ufrn.frascati.dao.IDAOProduct"/>
+ </service>
+ </component>
+ 
+</composite>
