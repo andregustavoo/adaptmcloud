@@ -12,8 +12,8 @@ public class MainLog {
 	
 	public static void executeAmazonDynamoDB(){
 		AmazonDynamoDBServiceProxy proxy=new AmazonDynamoDBServiceProxy();
-		String accessKey="AKIAJEAXQZVGGYFZREZQ";
-		String secretKey="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";
+		String accessKey="";
+		String secretKey="";
 		String keyItem="log01";
 		String s;
 		try {

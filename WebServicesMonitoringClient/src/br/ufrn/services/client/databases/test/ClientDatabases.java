@@ -14,9 +14,9 @@ public static void main(String args[]){
 }
 public static void executeRackSpace(){
 	RackspaceDatabaseServiceProxy proxy=new RackspaceDatabaseServiceProxy();
-	String host="jdbc:mysql://104.130.42.209:3306/monitor";
+	String host="";
 	String user="admin";
-	String pwd="c3f3tufrn";
+	String pwd="";
 	double sum;
 	try {
 		sum = proxy.connectDatabaseRackspace(host, user, pwd);
@@ -28,9 +28,9 @@ public static void executeRackSpace(){
 }
 public static void executeGoogleDatabases(){
 	GoogleCloudDatabaseServiceProxy proxy=new GoogleCloudDatabaseServiceProxy();
-	String host="jdbc:mysql://173.194.254.56:3306/monitor";
-	String user="root";
-	String pwd="c3f3tufrn";
+	String host="";
+	String user="";
+	String pwd="";
 	double sum;
 	try {
 		sum = proxy.connectDatabaseGoogleCloud(host, user, pwd);

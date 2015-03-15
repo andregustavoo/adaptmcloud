@@ -15,7 +15,7 @@ public class ClientStorage {
 	}
 	public static void executeDropBox(){
 		DropboxStorageProxy proxy=new DropboxStorageProxy();
-		String token="3tFy_uo27lAAAAAAAAAEjIzKyDOKoKv5OpfDHuJw7q_7VeUKHG71iSB-GCG4Lzw5";
+		String token="";
 		String file="File.ods";
 		
 		try {
@@ -29,8 +29,8 @@ public class ClientStorage {
 	}
 	public static void executeAmazonS3(){
 		AmazonS3StorageProxy proxy=new AmazonS3StorageProxy();
-		String acessKey="AKIAJEAXQZVGGYFZREZQ";
-		String secretKey="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";
+		String acessKey="";
+		String secretKey="";
 		String bucket="monitorings3";
 		String file="File.ods";
 		try {
@@ -43,8 +43,8 @@ public class ClientStorage {
 	}
 	public static void executeRackspaceStorage(){
 		RackspaceStorageProxy proxy=new RackspaceStorageProxy();
-		String user="andregustavoo";
-		String accessKey="b3f42ab2d4db4c69bca51d39632efe19";
+		String user="";
+		String accessKey="";
 		String region="IAD";
 		String bucket="monitoringrack";
 		String file="File.ods";
