@@ -7,9 +7,9 @@ public static void main(String args[]){
 	testGoogleCloud();
 }
 public static void testGoogleCloud(){
-	String host="jdbc:mysql://173.194.254.56:3306/monitor";
-	String user="root";
-	String pwd="c3f3tufrn";
+	String host="";
+	String user="";
+	String pwd="";
 	
 	GoogleCloudDatabaseService googleDB=new GoogleCloudDatabaseService();
 	System.out.println(googleDB.connectDatabaseGoogleCloud(host, user, pwd));

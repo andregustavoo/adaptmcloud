@@ -38,9 +38,9 @@ public class FachadaServidor {
 	
 	public void AmazonRDS() throws RemoteException{
 		AmazonRDSServiceProxy proxy=new AmazonRDSServiceProxy();
-		String host="jdbc:mysql://monitoring.c9bejyy3fccn.us-east-1.rds.amazonaws.com:3306/monitor";
-		String user="root";
-		String pwd="c3f3tufrn";
+		String host="";
+		String user="";
+		String pwd="";
 		double sum;
 			sum = proxy.connectDatabaseAmazon(host, user, pwd);
 			System.out.println(sum);
@@ -48,9 +48,9 @@ public class FachadaServidor {
 	}
 	public void GoogleCloudSQL() throws RemoteException{
 		GoogleCloudDatabaseServiceProxy proxy=new GoogleCloudDatabaseServiceProxy();
-		String host="jdbc:mysql://173.194.254.56:3306/monitor";
-		String user="root";
-		String pwd="c3f3tufrn";
+		String host="";
+		String user="";
+		String pwd="";
 		double sum;
 			sum = proxy.connectDatabaseGoogleCloud(host, user, pwd);
 			System.out.println(sum);
@@ -58,9 +58,9 @@ public class FachadaServidor {
 	}
 	public void RackspaceDatabase() throws RemoteException{
 		RackspaceDatabaseServiceProxy proxy=new RackspaceDatabaseServiceProxy();
-		String host="jdbc:mysql://104.130.42.209:3306/monitor";
-		String user="admin";
-		String pwd="c3f3tufrn";
+		String host="";
+		String user="";
+		String pwd="";
 		double sum;
 		sum = proxy.connectDatabaseRackspace(host, user, pwd);
 		System.out.println(sum);
@@ -69,8 +69,8 @@ public class FachadaServidor {
 	}
 	public void AmazonDynamoDB() throws RemoteException{
 		AmazonDynamoDBServiceProxy proxy=new AmazonDynamoDBServiceProxy();
-		String accessKey="AKIAJEAXQZVGGYFZREZQ";
-		String secretKey="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";
+		String accessKey="";
+		String secretKey="";
 		String keyItem="log01";
 		String s;
 	
@@ -79,8 +79,8 @@ public class FachadaServidor {
 	}
 	public void AmazonS3() throws RemoteException{
 		AmazonS3StorageProxy proxy=new AmazonS3StorageProxy();
-		String acessKey="AKIAJEAXQZVGGYFZREZQ";
-		String secretKey="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";
+		String acessKey="";
+		String secretKey="";
 		String bucket="monitorings3";
 		String file="File.ods";
 
@@ -90,7 +90,7 @@ public class FachadaServidor {
 	}
 	public void Dropbox() throws RemoteException{
 		DropboxStorageProxy proxy=new DropboxStorageProxy();
-		String token="3tFy_uo27lAAAAAAAAAEjIzKyDOKoKv5OpfDHuJw7q_7VeUKHG71iSB-GCG4Lzw5";
+		String token="";
 		String file="File.ods";
 		
 
@@ -100,10 +100,10 @@ public class FachadaServidor {
 	}
 	public void RackspaceCloudFiles() throws RemoteException{
 		RackspaceStorageProxy proxy=new RackspaceStorageProxy();
-		String user="andregustavoo";
-		String accessKey="b3f42ab2d4db4c69bca51d39632efe19";
+		String user="";
+		String accessKey="";
 		String region="IAD";
-		String bucket="monitoringrack";
+		String bucket="";
 		String file="File.ods";
 			boolean status=proxy.getFile(user, accessKey, region, bucket, file);
 			if(status)
