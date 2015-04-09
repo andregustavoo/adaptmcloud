@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop>
+	<prepare expr="all(healthwatcher.Constants)"/>
+   <prepare expr="all(healthwatcher.storage.Storage)"/>
+   	<prepare expr="execution(public  java.lang.Object lib.persistence.PersistenceMechanism->getCommunicationChannel())"/>
+   
+</aop>
