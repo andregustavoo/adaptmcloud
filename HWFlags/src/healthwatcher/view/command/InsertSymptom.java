@@ -49,7 +49,6 @@ public class InsertSymptom extends Command {
 			File photo=new File(request.getInput("photo"));
 			
 			Storage store=new Storage();
-			System.out.println("Storage01:"+System.nanoTime());
 			store.storePhoto(code, photo);
 			
 			/*

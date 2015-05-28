@@ -29,7 +29,6 @@ public class StorageAWS {
 		
 		putRequest.setCannedAcl(CannedAccessControlList.PublicRead);
 		
-		System.out.println("Storage02AWS:"+System.nanoTime());
 		
 		Constants.getS3().putObject(putRequest);
 		
@@ -37,7 +36,7 @@ public class StorageAWS {
 	
 	public static String load(String file) throws IOException{
 		String bucketName="monitorings3";
-		Properties props=Constants.getProperties("AwsCredentials.properties");
+		Properties props=Constants.getProperties("aws.properties");
 		System.out.println(props.getProperty("accessKey"));
 		BasicAWSCredentials credentials=new BasicAWSCredentials(props.getProperty("accessKey"), props.getProperty("secretKey"));
 		AmazonS3 s3=new AmazonS3Client(credentials);

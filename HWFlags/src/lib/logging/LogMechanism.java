@@ -3,7 +3,8 @@ package lib.logging;
 import healthwatcher.ConfigurationHandler;
 import healthwatcher.ConfigurationHandler.Features;
 import healthwatcher.cc.logging.LoggingAWS;
-import healthwatcher.cc.logging.LoggingHP;
+import healthwatcher.cc.logging.LoggingDropbox;
+import healthwatcher.cc.logging.LoggingRackspace;
 import healthwatcher.storage.Storage;
 
 import java.io.File;
@@ -63,12 +64,23 @@ public class LogMechanism {
 	}
 
 	public static void addLog(Level level, String message) {
+		
+		if (level.getName().equals("SEVERE"))
+			LogMechanism.getInstance().getLogger().severe("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
+		else if (level.getName().equals("WARNING"))
+			LogMechanism.getInstance().getLogger().warning("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
+		else if (level.getName().equals("FINE"))
+			LogMechanism.getInstance().getLogger().fine("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
+		else if (level.getName().equals("INFO"))
+			LogMechanism.getInstance().getLogger().info("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
 
 		if (ConfigurationHandler.getInstance().getFeature(Features.LOGGING).equals(ConfigurationHandler.AWSLOGGING)){
 			LoggingAWS.storeLog(level, message);
-		}/*else if(ConfigurationHandler.getInstance().getFeature(Features.LOGGING).equals(ConfigurationHandler.HPLOGGING)){
-			LoggingHP.storeLog(level, message);
-		}*/
+		}else if(ConfigurationHandler.getInstance().getFeature(Features.LOGGING).equals(ConfigurationHandler.DROPBOXLOGGING)){
+			LoggingDropbox.storeLog(level, message);
+		}else if(ConfigurationHandler.getInstance().getFeature(Features.LOGGING).equals(ConfigurationHandler.RACKSPACELOGGING)){
+			LoggingRackspace.storeLog(level, message);
+		}
 		
 	}
 

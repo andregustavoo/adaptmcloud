@@ -12,7 +12,13 @@ import java.io.IOException;
 
 public class Storage {
 	public void storePhoto(String code, File photo){
-		
+		if(ConfigurationHandler.getInstance().getFeature(Features.STORAGE).equals(ConfigurationHandler.AWSSTORAGE)){
+				StorageAWS.store(code, photo);
+		}else if(ConfigurationHandler.getInstance().getFeature(Features.STORAGE).equals(ConfigurationHandler.DROPBOXSTORAGE)){
+			StorageDropbox.store(code, photo);
+		}else if(ConfigurationHandler.getInstance().getFeature(Features.STORAGE).equals(ConfigurationHandler.RACKSPACESTORAGE)){
+			StorageRackspace.store(code, photo);
+		}
 	}
 	
 	public String load(String file){
@@ -20,7 +26,6 @@ public class Storage {
 			try {
 				return StorageAWS.load(file);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if(ConfigurationHandler.getInstance().getFeature(Features.STORAGE).equals(ConfigurationHandler.DROPBOXSTORAGE)){

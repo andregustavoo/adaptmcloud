@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<feature name="PERSISTENCE">awspersistence</feature>
+	<feature name="STORAGE">dropboxstorage</feature>
+	<feature name="LOGGING">rackspacelogging</feature>
+</configuration>

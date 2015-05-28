@@ -4,7 +4,9 @@ import healthwatcher.ConfigurationHandler;
 import healthwatcher.ConfigurationHandler.Features;
 import healthwatcher.Constants;
 import healthwatcher.cc.persistence.PersistenceAWS;
+import healthwatcher.cc.persistence.PersistenceGoogleSQL;
 import healthwatcher.cc.persistence.PersistenceHP;
+import healthwatcher.cc.persistence.PersistenceRackspace;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -178,9 +180,11 @@ public class PersistenceMechanism implements IPersistenceMechanism {
 		
 		if (ConfigurationHandler.getInstance().getFeature(Features.PERSISTENCE).equals(ConfigurationHandler.AWSPERSISTENCE)){
 			PersistenceAWS.reconfigure();
-		}/*else if(ConfigurationHandler.getInstance().getFeature(Features.PERSISTENCE).equals(ConfigurationHandler.HPPERSISTENCE)){
-			PersistenceHP.reconfigure();
-		}*/
+		}else if(ConfigurationHandler.getInstance().getFeature(Features.PERSISTENCE).equals(ConfigurationHandler.GOOGLEPERSISTENCE)){
+			PersistenceGoogleSQL.reconfigure();
+		}else if(ConfigurationHandler.getInstance().getFeature(Features.PERSISTENCE).equals(ConfigurationHandler.RACKSPACEPERSISTENCE)){
+			PersistenceRackspace.reconfigure();
+		}
 		
 		try {
 			return getCommunicationChannel(false).createStatement();

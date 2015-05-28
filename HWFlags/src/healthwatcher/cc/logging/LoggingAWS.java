@@ -20,16 +20,6 @@ import com.amazonaws.services.simpledb.model.ReplaceableItem;
 public class LoggingAWS {
 public static void storeLog(Level level,String message) {
 	
-	
-	if (level.getName().equals("SEVERE"))
-		LogMechanism.getInstance().getLogger().severe("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
-	else if (level.getName().equals("WARNING"))
-		LogMechanism.getInstance().getLogger().warning("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
-	else if (level.getName().equals("FINE"))
-		LogMechanism.getInstance().getLogger().fine("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
-	else if (level.getName().equals("INFO"))
-		LogMechanism.getInstance().getLogger().info("Log ID:" + LogMechanism.getLastOccurrence() + ", Message:" + message);
-	
 	Constants.getSDB().createDomain(new CreateDomainRequest(Constants.DOMAINSDB));
 	List<ReplaceableItem> erros=new ArrayList<ReplaceableItem>();
 	erros.add(new ReplaceableItem("LOG:").withAttributes(

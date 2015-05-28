@@ -92,7 +92,7 @@ public class Constants {
 			try {
 				SDB=new AmazonSimpleDBClient(new PropertiesCredentials(
 						Constants.class.
-						getResourceAsStream("../AwsCredentials.properties")));
+						getResourceAsStream("../aws.properties")));
 				return SDB;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -104,7 +104,7 @@ public class Constants {
 	public static  AmazonS3 getS3(){
 		if (s3==null){
 			try {
-				s3=new AmazonS3Client(new PropertiesCredentials(Constants.class.getResourceAsStream("../AwsCredentials.properties")));
+				s3=new AmazonS3Client(new PropertiesCredentials(Constants.class.getResourceAsStream("../aws.properties")));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
