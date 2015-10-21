@@ -8,21 +8,20 @@ import org.osoa.sca.annotations.Service;
 import org.ow2.frascati.tinfi.api.IntentHandler;
 import org.ow2.frascati.tinfi.api.IntentJoinPoint;
 @Service(IntentHandler.class)
-public class PersistenceHP implements IntentHandler {
-	private static final String HPURL="jdbc:mysql://15.185.115.196:3306/hw";
-	private static final String HPPASS="c3f3t";
+public class PersistenceRackspace implements IntentHandler {
+	
 	@Override
 	public Object invoke(IntentJoinPoint invocation) throws Throwable {
-if (!(Constants.getURL().equals(HPURL))){
-			
-			
-			Constants.setURL(HPURL);
-			Constants.setPass(HPPASS);
+		final String RACKSPACEURL=Constants.getProperties("Rackspace.properties").getProperty("RackspaceURL");
+		final String RACKSPACEPASS=Constants.getProperties("Rackspace.properties").getProperty("RackspacePASS");
+		if (!(Constants.getURL().equals(RACKSPACEURL))){
+			Constants.setURL(RACKSPACEURL);
+			Constants.setPass(RACKSPACEPASS);
 			PersistenceMechanism pm;
 			try {				
 			pm = PersistenceMechanism.getInstance();
-			pm.setUrl(HPURL);
-			pm.setPassword(HPPASS);
+			pm.setUrl(RACKSPACEURL);
+			pm.setPassword(RACKSPACEPASS);
 			//pm.releaseCommunicationChannel();
 			pm.disconnect();
 			pm.connect();

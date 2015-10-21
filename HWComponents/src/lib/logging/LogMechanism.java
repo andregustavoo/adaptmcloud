@@ -39,7 +39,9 @@ public class LogMechanism {
 		}
 		return singleton;
 	}
-
+	public static String getLogFile(){
+		return logFile;
+	}
 	public static void configure(String file) {
 		logFile = file;
 	}

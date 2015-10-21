@@ -1,0 +1,2 @@
+Colocar no startup do tomcat:   -javaagent:"/home/andre/Developer/jboss-aop-2.1.8.GA/lib/jboss-aop.jar"
+Colocar no classpath as dependências do JBOSSAOP

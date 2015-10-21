@@ -43,7 +43,9 @@ public class LogMechanism {
 	public static void configure(String file) {
 		logFile = file;
 	}
-
+	public static String getLogFile(){
+		return logFile;
+	}
 	public static synchronized int createOccurrence() {
 		getInstance().IdLog = getInstance().IdLog + 1;
 		return getInstance().IdLog;

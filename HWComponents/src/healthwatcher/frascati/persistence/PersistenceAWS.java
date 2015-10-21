@@ -9,10 +9,12 @@ import org.ow2.frascati.tinfi.api.IntentHandler;
 import org.ow2.frascati.tinfi.api.IntentJoinPoint;
 @Service(IntentHandler.class)
 public class PersistenceAWS implements IntentHandler {
-	public static final String AWSURL="jdbc:mysql://hw.c9bejyy3fccn.us-east-1.rds.amazonaws.com:3306/hw";
-	public static final String AWSPASS="c3f3tc3f3t";
 	@Override
 	public Object invoke(IntentJoinPoint invocation) throws Throwable {
+		
+		final String AWSURL=Constants.getProperties("AWS.properties").getProperty("AWSURL");
+		final String AWSPASS=Constants.getProperties("AWS.properties").getProperty("AWSDBPASS");
+		
 		if (!(Constants.getURL().equals(AWSURL))){
 			
 			Constants.setURL(AWSURL);
